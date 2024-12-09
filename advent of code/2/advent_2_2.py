@@ -40,9 +40,8 @@ for report in input_reports:
     split_report = report.split()
     if monotonic(split_report) and check_level_diff(split_report):
         safe_levels = safe_levels + 1
-    else:
-        if can_fix(split_report):
-            safe_levels = safe_levels + 1
+    elif can_fix(split_report):
+        safe_levels = safe_levels + 1
     
 
 print(safe_levels)
