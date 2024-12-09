@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 # input_reports = open("input2.txt", "r").split()
 input_reports = Path("G:\My Drive\Python Projects\input2.txt").read_text().split("\n")
 
@@ -24,11 +23,11 @@ def can_fix(report: list):
 
 
 def check_inc(list: list):
-    return all(i < j for i, j in zip(list,list[1:]))
+    return all(int(i) < int(j) for i, j in zip(list,list[1:]))
 
 
 def check_dec(list: list):
-    return all(i > j for i, j in zip(list,list[1:]))
+    return all(int(i) > int(j) for i, j in zip(list,list[1:]))
 
 def monotonic(list: list):
     return check_dec(list) or check_inc(list)
@@ -45,4 +44,3 @@ for report in input_reports:
     
 
 print(safe_levels)
-
