@@ -24,29 +24,31 @@ for line_no in range(len(map_start)):
             else:
                 antena_location[map_start[line_no][col_no]]= [(line_no, col_no)]
 
-antena_pair = list(combinations(antena_location["A"], 2))
+
+
+antinode_map = map_start.copy()
 
 for freq in antena_location:
     antena_pair = list(combinations(antena_location[freq], 2))
     for pair in antena_pair:
         line_diff = pair[0][0] - pair[1][0]
-        row_diff = pair[0][1] - pair[1][1]
-        print(freq, pair, line_diff, row_diff)
-        if pair[0][0]+line_diff >= 0 and pair[0][1]+row_diff >= 0:
-            try:
-                map_start[pair[0][0]+line_diff][pair[0][1]+row_diff] = "#"
-            except:
-                pass
-        if pair[1][0]+line_diff >= 0 and pair[1][1]+row_diff >= 0:
-            try:
-                map_start[pair[1][0]-line_diff][pair[1][1]-row_diff] = "#"
-            except:
-                pass
+        col_diff = pair[0][1] - pair[1][1]
+
+        antinode_1_line = pair[0][0] + line_diff
+        antinode_1_col = pair[0][1] + col_diff
+
+        if 0 <= antinode_1_line < len(map_start) and 0 <= antinode_1_col < len(map_start[0]):
+                antinode_map[pair[0][0]+line_diff][pair[0][1]+col_diff] = "#"
+        antinode_2_line = pair[1][0] - line_diff
+        antinode_2_col = pair[1][1] - col_diff
+        if 0 <= antinode_2_line < len(map_start) and 0 <= antinode_2_col < len(map_start[0]):
+                antinode_map[pair[1][0]-line_diff][pair[1][1]-col_diff] = "#"
+
 
 
 antinode = 0
-for line in map_start:
-    # print(line)
+for line in antinode_map:
+    print(line)
     for col in line:
         if col == "#":
             antinode += 1
