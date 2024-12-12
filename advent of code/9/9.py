@@ -1,7 +1,6 @@
 from pathlib import Path
 
 # string_input = Path("G:\My Drive\Python Projects\input9.txt").read_text()
-
 string_input = "2333133121414131402"
 input_with_dots = ''
 
@@ -12,18 +11,21 @@ for i in range(len(string_input)):
     if i % 2 == 1:
         input_with_dots = input_with_dots + "." * int(string_input[i])
 
-if input_with_dots == "00...111...2...333.44.5555.6666.777.888899":
-    print("OK")
+input_list = list(input_with_dots)
 
 i, j = 0, len(input_with_dots)-1
-edited_input = ''
-
-while i <= j:
-    while input_with_dots[i].isalnum():
+while i < j:
+    while i < len(input_list) and input_list[i] != ".":
         i += 1
-    while not input_with_dots[j].isalnum():
+    while input_list[j] == '.':
         j -= 1
+    if i < j:
+        input_list[i], input_list[j] = input_list[j], input_list[i]
 
 
+sum_of_org = 0
+for idx, char in enumerate(input_list):
+    if char.isalnum():
+        sum_of_org += idx * int(char)
 
-print(edited_input)
+print(sum_of_org)
