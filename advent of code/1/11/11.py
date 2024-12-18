@@ -5,7 +5,8 @@ start_stones = Path("G:\My Drive\Python Projects\input11.txt").read_text().split
 # print(start_stones)
 
 def even_blink(stone: str):
-    split_stone = (str(int(stone[0:int(len(stone)/2)])), str(int(stone[int(len(stone)/2):])))
+    half_of_stone = int(len(stone)/2)
+    split_stone = (str(int(stone[0:half_of_stone])), str(int(stone[half_of_stone:])))
     return split_stone
 
 def odd_stone(stone: str):
@@ -19,8 +20,9 @@ while i < number_of_blinks:
     blinked = []
     for stone in start_stones:
         if len(stone) % 2 == 0:
-            blinked.append(even_blink(stone)[0])
-            blinked.append(even_blink(stone)[1])
+            split_stone = even_blink(stone)
+            blinked.append(split_stone[0])
+            blinked.append(split_stone[1])
         elif stone == "0":
             blinked.append("1")
         elif len(stone) % 2 == 1:
