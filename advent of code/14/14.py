@@ -38,24 +38,25 @@ sect2 = 0
 sect3 = 0
 sect4 = 0
 
-for line in range(len(robot_map)):
-    for row in range(len(robot_map[0])):
-        if line < ((len(robot_map)+1)/2):
-            if row < (len(robot_map[1])+1)/2:
-                sect1 = sect1 + robot_map[line][row]
-                continue
-            if row > (len(robot_map[1])+1)/2:
-                sect2 = sect2 + robot_map[line][row]
-            continue
-        if row < (len(robot_map[1])+1)/2:
-                sect3 = sect3 + robot_map[line][row]
-                continue
-        sect4 = sect4 + robot_map[line][row]
+for line_no in range(len(robot_map)//2):
+    sect1 = sect1 + sum(robot_map[line_no][0:((len(robot_map[line_no])-1)//2)])
 
-print(sect1)
-print(sect2)
-print(sect3)
-print(sect4)
+for line_no in range(len(robot_map)//2):
+    sect2 = sect2 + sum(robot_map[line_no][((len(robot_map[line_no])+1)//2):])
+
+for line_no in range((len(robot_map)+2)//2, len(robot_map)):
+    sect3 = sect3 + sum(robot_map[line_no][0:((len(robot_map[line_no])-1)//2)])
+
+for line_no in range((len(robot_map)+2)//2, len(robot_map)):
+    sect3 = sect3 + sum(robot_map[line_no][((len(robot_map[line_no])+1)//2):])
+    print(robot_map[line_no][((len(robot_map[line_no])+1)//2):])
+
+# print(sect1)
+# print(sect2)
+# print(sect3)
+# print(sect4)
+x = range(4, 7)
+print(x)
 
 # for line in robot_map:
 #     print(line)
