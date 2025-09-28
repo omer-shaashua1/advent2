@@ -1,0 +1,118 @@
+from energydiagram import ED
+import matplotlib.pyplot as plt
+from pathlib import Path
+
+diagram = ED()
+diagram.round_energies_at_digit = 2
+diagram.bottom_text_fontsize = 'small'
+diagram.top_text_fontsize = 'small'
+diagram.offset = 2
+
+
+
+# DMSO Values:
+A2_DMSO = 0.0
+B2_DMSO= 10.19513872
+T2_OA_DMSO = 21.71934151
+C2_DMSO = -22.0923925
+T2_LS_DMSO = -9.1909925
+E2_DMSO = -18.1065125
+T2_TM_DMSO = 10.0506675
+G2_DMSO = -35.751185
+T2_RE_DMSO = -19.822725
+A_prime_DMSO = -63.265805
+
+# this is the energy levels
+diagram.add_level(0, 'A2')
+diagram.add_level(24.355785, 'A1', 'last', color="r")
+diagram.add_level(-4.49792, 'A3', 'last', color="b")
+
+diagram.add_level(B2_DMSO, '', color='g')
+diagram.add_level(7.658991602,"B2", 'last', color="b")
+diagram.add_level(17.4300675,"", 'last', color="r")
+
+diagram.add_level(T2_OA_DMSO, '', color='g')
+diagram.add_level(19.18319439,"OA", 'last', color="b")
+diagram.add_level(26.1799275,"", 'last', color="r")
+
+diagram.add_level(C2_DMSO, '', color='g')
+diagram.add_level(-24.62853962,"C2", 'last', color="b")
+diagram.add_level(14.5121925,"", 'last', color="r")
+
+diagram.add_level(-16.52835, 'D1', color='r')
+
+diagram.add_level(T2_LS_DMSO, '', color='g')
+diagram.add_level(-14.26328674,"LS", 'last', color="b")
+diagram.add_level(-7.8493975,"", 'last', color="r")
+
+diagram.add_level(E2_DMSO, '', color='g')
+diagram.add_level(-20.64265962,"E2", 'last', color="b")
+diagram.add_level(-11.2931175,"", 'last', color="r")
+
+diagram.add_level(T2_TM_DMSO, '', color='g')
+diagram.add_level(7.514520379,"", 'last', color="b")
+diagram.add_level(2.2244875,"TM", 'last', color="r")
+
+diagram.add_level(-17.1062775, 'F1', color='r')
+
+diagram.add_level(G2_DMSO, '', color='g')
+diagram.add_level(-35.751185,"G2", 'last', color="b")
+diagram.add_level(-18.3411975,"", 'last', color="r")
+
+diagram.add_level(T2_RE_DMSO, '', color='g')
+diagram.add_level(-19.822725,"RE", 'last', color="b")
+diagram.add_level(-8.3087275,"", 'last', color="r")
+
+diagram.add_level(-46.516575, 'H1', color='r')
+
+diagram.add_level(A_prime_DMSO, "", color='g')
+diagram.add_level(-60.72965788,"A'2", 'last', color="b")
+diagram.add_level(-38.91002,"", 'last', color="r",)
+
+#linking the energy levels
+
+diagram.add_link(0, 3, color='g')
+diagram.add_link(3, 6, color='g', linestyle='solid')
+diagram.add_link(6, 9, color='g')
+diagram.add_link(9, 13, color='g')
+diagram.add_link(13, 16, color='g')
+diagram.add_link(16, 19, color='g')
+diagram.add_link(19, 23, color='g')
+diagram.add_link(23, 26, color='g')
+diagram.add_link(26, 30, color='g')
+
+diagram.add_link(0, 4, color='b')
+diagram.add_link(4, 7, color='b')
+diagram.add_link(7, 10, color='b')
+diagram.add_link(10, 14, color='b')
+diagram.add_link(14, 17, color='b')
+diagram.add_link(17, 20, color='b')
+diagram.add_link(20, 24, color='b')
+diagram.add_link(24, 27, color='b')
+diagram.add_link(27, 30, color='b')
+
+diagram.add_link(1, 5, color='r')
+diagram.add_link(5, 8, color='r')
+diagram.add_link(8, 11, color='r')
+diagram.add_link(11, 12, color='r')
+diagram.add_link(12, 15, color='r')
+diagram.add_link(15, 18, color='r')
+diagram.add_link(18, 21, color='r')
+diagram.add_link(21, 22, color='r')
+diagram.add_link(22, 25, color='r')
+diagram.add_link(25, 28, color='r')
+diagram.add_link(28, 29, color='r')
+diagram.add_link(29, 32, color='r')
+
+
+#arrows for RDS
+diagram.add_arrow(12, 21, position='left', color='g')
+diagram.add_arrow(9, 19, position='left', color='r')
+
+
+diagram.offset = 0.10
+# diagram.plot(show_IDs=True)
+diagram.plot(ylabel="Gibbs / $kcal$ $mol^{-1}$") # this is the default ylabel
+plt.show()
+output_path = Path("G:\My Drive\Python Projects\Energy_Diagrams")
+# plt.savefig(output_path,dpi=400)
