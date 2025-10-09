@@ -2,11 +2,11 @@ from pathlib import Path
 import re
 
 # Create an input for the challenge. Each cell in machines has 3 values - button A, button B and the Prize
-# challenge_input = Path("G:\My Drive\Python Projects\input14.txt").read_text().split("\n")
-challenge_input = Path(r"G:\My Drive\Python Projects\test.txt").read_text().split("\n")
+challenge_input = Path("G:\My Drive\Python Projects\input14.txt").read_text().split("\n")
+# challenge_input = Path(r"G:\My Drive\Python Projects\test.txt").read_text().split("\n")
 
 robots = []
-map_size = (11,7)
+map_size = (101,103)
 robot_map = []
 for line in range(map_size[1]):
     robot_map.append([])
@@ -33,6 +33,9 @@ for robot in robots:
 for location in location_100sec:
     robot_map[location[1]][location[0]] = robot_map[location[1]][location[0]] + 1
 
+# for line in robot_map:
+#     print(line)
+
 sect1 = 0
 sect2 = 0
 sect3 = 0
@@ -48,15 +51,18 @@ for line_no in range((len(robot_map)+2)//2, len(robot_map)):
     sect3 = sect3 + sum(robot_map[line_no][0:((len(robot_map[line_no])-1)//2)])
 
 for line_no in range((len(robot_map)+2)//2, len(robot_map)):
-    sect3 = sect3 + sum(robot_map[line_no][((len(robot_map[line_no])+1)//2):])
-    print(robot_map[line_no][((len(robot_map[line_no])+1)//2):])
+    sect4 = sect4 + sum(robot_map[line_no][((len(robot_map[line_no])+1)//2):])
 
+safety_factor = sect1 * sect2 * sect3 * sect4
+print(safety_factor)
 # print(sect1)
 # print(sect2)
 # print(sect3)
 # print(sect4)
-x = range(4, 7)
-print(x)
+
+
+# for x in range(4, 7):
+#     print(x)
 
 # for line in robot_map:
 #     print(line)
